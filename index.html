@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LYRIO | Prata 925</title>
+
+<style>
+:root {
+  --azul:#10213e;
+  --azul-claro:#e8eef6;
+  --dourado:#b99a62;
+  --branco:#ffffff;
+  --fundo:#faf9f6;
+  --texto:#263247;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family:Arial,sans-serif;
+  background:var(--fundo);
+  color:var(--texto);
+}
+
+button {
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.topo {
+  background:var(--azul);
+  color:white;
+  text-align:center;
+  padding:10px;
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+header {
+  background:white;
+  padding:15px 5%;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  border-bottom:1px solid #eee;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.menu-esq {
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  position:relative;
+}
+
+.hamburguer {
+  background:none;
+  border:0;
+  color:var(--azul);
+  padding:6px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:4px;
+}
+
+.hamburguer span {
+  display:block;
+  width:22px;
+  height:2px;
+  background:currentColor;
+  transition:.25s;
+}
+
+.hamburguer:hover span {
+  background:var(--dourado);
+}
+
+.menu-dropdown {
+  display:none;
+  position:absolute;
+  top:calc(100% + 12px);
+  left:0;
+  min-width:190px;
+  background:white;
+  border:1px solid #e6e6e6;
+  box-shadow:0 12px 28px rgba(16,33,62,.14);
+  z-index:25;
+  flex-direction:column;
+  padding:8px 0;
+}
+
+.menu-dropdown.aberto {
+  display:flex;
+}
+
+.menu-dropdown button {
+  background:none;
+  border:0;
+  color:var(--azul);
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  text-align:left;
+  padding:12px 18px;
+  width:100%;
+}
+
+.menu-dropdown button:hover {
+  background:var(--fundo);
+  color:var(--dourado);
+}
+
+/* NOVA LOGO DO TOPO */
+.logo-container {
+  display:flex;
+  justify-content:center;
+}
+
+.logo-img {
+  height:48px;
+  width:auto;
+  object-fit:contain;
+}
+
+.acoes {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:15px;
+}
+
+.instagram {
+  width:25px;
+  height:25px;
+  color:var(--azul);
+  display:block;
+}
+
+.carrinho-btn {
+  background:none;
+  border:0;
+  color:var(--azul);
+  font-size:22px;
+}
+
+.banner {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:430px;
+  background:var(--azul);
+  color:white;
+}
+
+.banner-texto {
+  padding:65px 9%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.banner-texto small {
+  color:var(--dourado);
+  letter-spacing:3px;
+  font-size:10px;
+}
+
+.banner h1 {
+  font:normal 52px Georgia,serif;
+  margin:22px 0;
+  line-height:1.1;
+}
+
+.banner p {
+  font-size:14px;
+  line-height:1.8;
+  color:#dce3ed;
+  max-width:400px;
+}
+
+.banner img {
+  width:100%;
+  height:100%;
+  min-height:430px;
+  object-fit:cover;
+}
+
+.botao {
+  display:inline-block;
+  background:var(--dourado);
+  color:white;
+  text-decoration:none;
+  border:1px solid var(--dourado);
+  padding:15px 24px;
+  margin-top:25px;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  width:max-content;
+}
+
+.botao:hover {
+  background:transparent;
+  color:white;
+}
+
+.beneficios {
+  background:white;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:45px;
+  padding:22px 10px;
+  font-size:10px;
+  letter-spacing:1px;
+  color:#596579;
+}
+
+.secao {
+  padding:65px 5%;
+}
+
+.titulo {
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.titulo small {
+  color:var(--dourado);
+  letter-spacing:3px;
+  font-size:10px;
+}
+
+.titulo h2 {
+  color:var(--azul);
+  font:normal 38px Georgia,serif;
+  margin:12px 0;
+}
+
+.titulo p {
+  color:#788294;
+  font-size:13px;
+}
+
+.colecoes {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.colecao {
+  height:370px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  background:#ddd;
+}
+
+.colecao img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.78);
+  transition:.4s;
+}
+
+.colecao:hover img {
+  transform:scale(1.04);
+}
+
+.colecao-info {
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:30px;
+  color:white;
+  background:linear-gradient(transparent,rgba(0,0,0,.65));
+}
+
+.colecao-info h3 {
+  font:normal 38px Georgia,serif;
+  margin-bottom:12px;
+}
+
+.colecao-info span {
+  font-size:10px;
+  letter-spacing:2px;
+  border-bottom:1px solid var(--dourado);
+  padding-bottom:6px;
+}
+
+/* CATÁLOGO */
+
+#catalogo {
+  display:none;
+  background:white;
+}
+
+.filtros {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:30px;
+}
+
+.filtros button {
+  padding:11px 15px;
+  border:1px solid #ddd;
+  background:white;
+  color:var(--azul);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.filtros button.ativo,
+.filtros button:hover {
+  background:var(--azul);
+  color:white;
+}
+
+.voltar {
+  display:block;
+  margin:0 auto 25px;
+  border:0;
+  background:none;
+  color:var(--dourado);
+  font-size:12px;
+  text-decoration:underline;
+}
+
+.produtos {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px 15px;
+  max-width:1150px;
+  margin:auto;
+}
+
+.produto-imagem {
+  width:100%;
+  aspect-ratio:4/4.7;
+  background:#f0efec;
+  overflow:hidden;
+}
+
+.produto-imagem img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.4s;
+}
+
+.produto:hover img {
+  transform:scale(1.04);
+}
+
+.produto-info {
+  padding:13px 3px;
+}
+
+.produto-info small {
+  color:#8991a0;
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.produto-info h3 {
+  font:normal 17px Georgia,serif;
+  color:var(--azul);
+  margin:8px 0;
+}
+
+.preco {
+  font-size:13px;
+  color:#515d70;
+}
+
+.adicionar {
+  width:100%;
+  margin-top:13px;
+  padding:12px 5px;
+  border:1px solid var(--azul);
+  color:var(--azul);
+  background:white;
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.adicionar:hover {
+  background:var(--azul);
+  color:white;
+}
+
+.vip {
+  text-align:center;
+  padding:65px 20px;
+  background:var(--azul-claro);
+}
+
+.vip h2 {
+  font:normal 34px Georgia,serif;
+  color:var(--azul);
+  margin:12px 0;
+}
+
+.vip p {
+  font-size:13px;
+  color:#66748a;
+}
+
+/* RODAPÉ E LOGO DO RODAPÉ */
+footer {
+  background:#0c1930;
+  color:white;
+  text-align:center;
+  padding:40px 20px;
+}
+
+.logo-footer-img {
+  height:70px;
+  width:auto;
+  object-fit:contain;
+  margin-bottom:10px;
+}
+
+footer p {
+  font-size:11px;
+  color:#b8c1d0;
+  margin:15px 0;
+}
+
+footer a {
+  color:white;
+  text-decoration:none;
+  font-size:11px;
+}
+
+.carrinho-painel {
+  position:fixed;
+  top:0;
+  right:-450px;
+  width:min(420px,100%);
+  height:100%;
+  background:white;
+  z-index:30;
+  padding:22px;
+  transition:.3s;
+  overflow:auto;
+  box-shadow:-5px 0 20px #0001;
+}
+
+.carrinho-painel.aberto {
+  right:0;
+}
+
+.carrinho-cabecalho {
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #eee;
+  padding-bottom:18px;
+}
+
+.carrinho-cabecalho h2 {
+  font:normal 25px Georgia,serif;
+  color:var(--azul);
+}
+
+.fechar {
+  border:0;
+  background:none;
+  font-size:25px;
+}
+
+.item-carrinho {
+  display:flex;
+  gap:12px;
+  padding:15px 0;
+  border-bottom:1px solid #eee;
+}
+
+.item-carrinho img {
+  width:65px;
+  height:75px;
+  object-fit:cover;
+}
+
+.item-carrinho h4 {
+  font:normal 15px Georgia,serif;
+  margin-bottom:7px;
+}
+
+.item-carrinho button {
+  padding:4px 9px;
+  margin-top:8px;
+}
+
+.total {
+  display:flex;
+  justify-content:space-between;
+  padding:20px 0;
+  color:var(--azul);
+}
+
+.finalizar {
+  width:100%;
+  background:var(--azul);
+  color:white;
+  border:0;
+  padding:16px;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+.observacao {
+  font-size:10px;
+  color:#8991a0;
+  line-height:1.5;
+  margin-top:12px;
+}
+
+@media(max-width:750px) {
+  header {
+    padding:15px;
+  }
+
+  .logo-img {
+    height:38px;
+  }
+
+  .banner {
+    grid-template-columns:1fr;
+  }
+
+  .banner img {
+    min-height:260px;
+    grid-row:1;
+  }
+
+  .banner-texto {
+    padding:45px 25px;
+  }
+
+  .banner h1 {
+    font-size:43px;
+  }
+
+  .colecao {
+    height:260px;
+  }
+
+  .colecao-info {
+    padding:18px;
+  }
+
+  .colecao-info h3 {
+    font-size:28px;
+  }
+
+  .produtos {
+    grid-template-columns:repeat(2,1fr);
+    gap:22px 12px;
+  }
+
+  .titulo h2 {
+    font-size:30px;
+  }
+}
+
+@media(max-width:430px) {
+  .logo-img {
+    height:32px;
+  }
+
+  .colecoes {
+    gap:10px;
+  }
+
+  .colecao {
+    height:220px;
+  }
+
+  .colecao-info h3 {
+    font-size:24px;
+  }
+
+  .beneficios {
+    gap:14px;
+    font-size:8px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topo">
+  PRATA 925 • ELEGÂNCIA EM CADA DETALHE
+</div>
+
+<header>
+
+  <div class="menu-esq">
+    <button type="button"
+            class="hamburguer"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            onclick="toggleMenu(event)">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="menu-dropdown" id="menuDropdown">
+      <button type="button" onclick="selecionarMenu('inicio')">Início</button>
+      <button type="button" onclick="selecionarMenu('Feminino')">Feminino</button>
+      <button type="button" onclick="selecionarMenu('Masculino')">Masculino</button>
+    </nav>
+  </div>
+
+  <!-- NOVA LOGOMARCA NO TOPO -->
+  <a href="#" class="logo-container" onclick="inicio();return false;">
+    <img src="logo.png" alt="LYRIO PRATAS" class="logo-img">
+  </a>
+
+  <div class="acoes">
+
+    <a href="https://www.instagram.com/shop_lyrio/"
+       target="_blank"
+       aria-label="Instagram">
+
+      <svg class="instagram"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8">
+
+        <rect x="3" y="3" width="18" height="18" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="18" cy="6" r="1" fill="currentColor"/>
+
+      </svg>
+
+    </a>
+
+    <button type="button" class="carrinho-btn" onclick="abrirCarrinho()">
+      ♧ <span id="quantidade">0</span>
+    </button>
+
+  </div>
+
+</header>
+
+<main>
+
+<section id="inicio">
+
+  <div class="banner">
+
+    <div class="banner-texto">
+
+      <small>COLEÇÃO LYRIO • PRATA 925</small>
+
+      <h1>O luxo está nos detalhes.</h1>
+
+      <p>
+        Peças que acompanham sua essência.
+        Descubra uma seleção de joias pensada
+        para transformar momentos em marcas inesquecíveis.
+      </p>
+
+      <a href="#colecoes" class="botao">
+        Descobrir coleções
+      </a>
+
+    </div>
+
+    <img
+      src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=1200&q=85"
+      alt="Joias elegantes">
+
+  </div>
+
+  <div class="beneficios">
+    <span>✧ PRATA 925</span>
+    <span>✧ ESTILO ATEMPORAL</span>
+    <span>✧ ELEGÂNCIA EM CADA DETALHE</span>
+  </div>
+
+  <section class="secao" id="colecoes">
+
+    <div class="titulo">
+      <small>ENCONTRE SEU ESTILO</small>
+      <h2>Nossas coleções</h2>
+      <p>Elegância para todos os momentos.</p>
+    </div>
+
+    <div class="colecoes">
+
+      <div class="colecao"
+           onclick="abrirColecao('Feminino')">
+
+        <img
+          src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1000&q=85"
+          alt="Coleção feminina">
+
+        <div class="colecao-info">
+          <h3>Feminino</h3>
+          <span>EXPLORAR COLEÇÃO →</span>
+        </div>
+
+      </div>
+
+      <div class="colecao"
+           onclick="abrirColecao('Masculino')">
+
+        <img
+          src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=1000&q=85"
+          alt="Coleção masculina">
+
+        <div class="colecao-info">
+          <h3>Masculino</h3>
+          <span>EXPLORAR COLEÇÃO →</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</section>
+
+<!-- OS PRODUTOS SÓ APARECEM DEPOIS DA ESCOLHA DA COLEÇÃO -->
+
+<section class="secao" id="catalogo">
+
+  <div class="titulo">
+    <small id="nomeColecao">COLEÇÃO LYRIO</small>
+    <h2 id="tituloColecao">Nossas peças</h2>
+    <p>Descubra peças que combinam com você.</p>
+  </div>
+
+  <button type="button" class="voltar" onclick="inicio()">
+    ← Voltar para as coleções
+  </button>
+
+  <div class="filtros">
+
+    <button type="button" class="ativo" onclick="filtrar('Todos',this)">Todos</button>
+    <button type="button" onclick="filtrar('Anéis',this)">Anéis</button>
+    <button type="button" onclick="filtrar('Pulseiras',this)">Pulseiras</button>
+    <button type="button" onclick="filtrar('Colares',this)">Colares</button>
+    <button type="button" onclick="filtrar('Correntes',this)">Correntes</button>
+    <button type="button" onclick="filtrar('Brincos',this)">Brincos</button>
+    <button type="button" onclick="filtrar('Relógios',this)">Relógios</button>
+
+  </div>
+
+  <div class="produtos" id="produtos"></div>
+
+</section>
+
+<section class="vip">
+
+  <small style="color:#b99a62;letter-spacing:3px">
+    UMA EXPERIÊNCIA ESPECIAL
+  </small>
+
+  <h2>Faça parte do universo LYRIO.</h2>
+
+  <p>
+    Entre para nosso Grupo VIP e acompanhe
+    novidades e lançamentos.
+  </p>
+
+  <a
+    class="botao"
+    href="https://chat.whatsapp.com/Lwfvwia8UD34Vr41Hki3z5"
+    target="_blank">
+
+    ENTRAR NO GRUPO VIP
+
+  </a>
+
+</section>
+
+</main>
+
+<footer>
+
+  <!-- NOVA LOGOMARCA NO RODAPÉ -->
+  <a href="#" onclick="inicio();return false;">
+    <img src="logo.png" alt="LYRIO PRATAS" class="logo-footer-img">
+  </a>
+
+  <p>
+    Elegância em cada detalhe.<br>
+    Joias e acessórios em prata 925.
+  </p>
+
+  <a href="https://www.instagram.com/shop_lyrio/" target="_blank">
+    INSTAGRAM
+  </a>
+
+  <p>© 2026 LYRIO. TODOS OS DIREITOS RESERVADOS.</p>
+
+</footer>
+
+<!-- CARRINHO -->
+
+<div class="carrinho-painel" id="painelCarrinho">
+
+  <div class="carrinho-cabecalho">
+
+    <h2>Seu carrinho</h2>
+
+    <button type="button" class="fechar" onclick="fecharCarrinho()">×</button>
+
+  </div>
+
+  <div id="itensCarrinho"></div>
+
+  <div class="total">
+    <strong>Subtotal</strong>
+    <strong id="valorTotal">R$ 0,00</strong>
+  </div>
+
+  <button type="button" class="finalizar" onclick="finalizarPedido()">
+    FINALIZAR PELO WHATSAPP
+  </button>
+
+  <p class="observacao">
+    Produtos e preços demonstrativos.
+    Os valores serão atualizados antes do lançamento.
+  </p>
+
+</div>
+
+<script>
+
+/* CONFIGURAÇÃO DO WHATSAPP
+   Inserir o número comercial completo, somente números.
+   Exemplo: 5511999999999
+*/
+
+const WHATSAPP = "";
+
+/* PRODUTOS DEMONSTRATIVOS */
+
+const produtos = [
+
+{
+ id:1,
+ nome:"Anel Solitário",
+ categoria:"Anéis",
+ genero:"Feminino",
+ preco:149.90,
+ imagem:"https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=700&q=85"
+},
+
+{
+ id:2,
+ nome:"Anel Aparador",
+ categoria:"Anéis",
+ genero:"Feminino",
+ preco:119.90,
+ imagem:"https://images.unsplash.com/photo-1603561596112-0a132b757442?auto=format&fit=crop&w=700&q=85"
+},
+
+{
+ id:3,
+ nome:"Brinco Argola",
+ categoria:"Brincos",
+ genero:"Feminino",
+ preco:89.90,
+ imagem:"https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=700&q=85"
+},
+
+{
+ id:4,
+ nome:"Colar Ponto de Luz",
+ categoria:"Colares",
+ genero:"Feminino",
+ preco:159.90,
+ imagem:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=700&q=85"
+},
+
+{
+ id:5,
+ nome:"Pulseira Delicada",
+ categoria:"Pulseiras",
+ genero:"Feminino",
+ preco:179.90,
+ imagem:"https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=700&q=85"
+},
+
+{
+ id:6,
+ nome:"Anel Masculino",
+ categoria:"Anéis",
+ genero:"Masculino",
+ preco:189.90,
+ imagem:"https://images.unsplash.com/photo-1603561596112-0a132b757442?auto=format&fit=crop&w=700&q=85"
+},
+
+{
+ id:7,
+ nome:"Corrente Masculina",
+ categoria:"Correntes",
+ genero:"Masculino",
+ preco:219.90,
+ imagem:"https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=85"
+},
+
+{
+ id:8,
+ nome:"Pulseira Masculina",
+ categoria:"Pulseiras",
+ genero:"Masculino",
+ preco:199.90,
+ imagem:"https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=85"
+},
+
+{
+ id:9,
+ nome:"Relógio Minimalista",
+ categoria:"Relógios",
+ genero:"Masculino",
+ preco:399.90,
+ imagem:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85"
+}
+
+];
+
+let generoAtual = "";
+let categoriaAtual = "Todos";
+let carrinho = [];
+
+function toggleMenu(event) {
+ event.stopPropagation();
+ const menu = document.getElementById("menuDropdown");
+ const botao = event.currentTarget;
+ const aberto = menu.classList.toggle("aberto");
+ botao.setAttribute("aria-expanded", aberto);
+}
+
+function fecharMenu() {
+ const menu = document.getElementById("menuDropdown");
+ const botao = document.querySelector(".hamburguer");
+ if (menu) menu.classList.remove("aberto");
+ if (botao) botao.setAttribute("aria-expanded", "false");
+}
+
+function selecionarMenu(destino) {
+ fecharMenu();
+ if (destino === "inicio") {
+  inicio();
+ } else {
+  abrirColecao(destino);
+ }
+}
+
+document.addEventListener("click", function(e) {
+ const menuEsq = document.querySelector(".menu-esq");
+ if (menuEsq && !menuEsq.contains(e.target)) {
+  fecharMenu();
+ }
+});
+
+function dinheiro(valor) {
+ return valor.toLocaleString("pt-BR",{
+  style:"currency",
+  currency:"BRL"
+ });
+}
+
+/* ABRIR COLEÇÃO */
+
+function abrirColecao(genero) {
+
+ fecharMenu();
+ generoAtual = genero;
+ categoriaAtual = "Todos";
+
+ document.getElementById("inicio").style.display="none";
+ document.getElementById("catalogo").style.display="block";
+
+ document.getElementById("nomeColecao").innerText=
+ "COLEÇÃO "+genero.toUpperCase();
+
+ document.getElementById("tituloColecao").innerText=
+ genero;
+
+ document.querySelectorAll(".filtros button").forEach((b,i)=>{
+  b.classList.toggle("ativo",i===0);
+ });
+
+ mostrarProdutos();
+
+ document.getElementById("catalogo").scrollIntoView({
+  behavior:"smooth"
+ });
+
+}
+
+/* VOLTAR À PÁGINA INICIAL */
+
+function inicio() {
+
+ fecharMenu();
+ document.getElementById("inicio").style.display="block";
+ document.getElementById("catalogo").style.display="none";
+
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
+
+}
+
+/* FILTRAR PRODUTOS */
+
+function filtrar(categoria,botao) {
+
+ categoriaAtual=categoria;
+
+ document.querySelectorAll(".filtros button").forEach(b=>{
+  b.classList.remove("ativo");
+ });
+
+ botao.classList.add("ativo");
+
+ mostrarProdutos();
+
+}
+
+/* MOSTRAR PRODUTOS */
+
+function mostrarProdutos() {
+
+ const lista=produtos.filter(p=>
+  p.genero===generoAtual &&
+  (categoriaAtual==="Todos" ||
+   p.categoria===categoriaAtual)
+ );
+
+ document.getElementById("produtos").innerHTML=
+ lista.map(p=>`
+
+ <div class="produto">
+
+  <div class="produto-imagem">
+   <img src="${p.imagem}" alt="${p.nome}">
+  </div>
+
+  <div class="produto-info">
+
+   <small>PRATA 925 • ${p.categoria}</small>
+
+   <h3>${p.nome}</h3>
+
+   <div class="preco">${dinheiro(p.preco)}</div>
+
+   <button
+    type="button"
+    class="adicionar"
+    onclick="adicionar(${p.id})">
+
+    ADICIONAR AO CARRINHO
+
+   </button>
+
+  </div>
+
+ </div>
+
+ `).join("");
+
+}
+
+/* CARRINHO */
+
+function adicionar(id) {
+
+ let item=carrinho.find(p=>p.id===id);
+
+ if(item) {
+  item.quantidade++;
+ } else {
+  carrinho.push({
+   id:id,
+   quantidade:1
+  });
+ }
+
+ atualizarCarrinho();
+
+ alert("Produto adicionado ao carrinho!");
+
+}
+
+function atualizarCarrinho() {
+
+ let quantidade=0;
+ let total=0;
+
+ const area=document.getElementById("itensCarrinho");
+
+ area.innerHTML="";
+
+ carrinho.forEach(item=>{
+
+  const p=produtos.find(x=>x.id===item.id);
+
+  quantidade+=item.quantidade;
+  total+=p.preco*item.quantidade;
+
+  area.innerHTML+=`
+
+   <div class="item-carrinho">
+
+    <img src="${p.imagem}" alt="${p.nome}">
+
+    <div>
+
+     <h4>${p.nome}</h4>
+
+     <small>${dinheiro(p.preco)}</small>
+
+     <br>
+
+     <button type="button" onclick="alterarQuantidade(${p.id},-1)">−</button>
+
+     ${item.quantidade}
+
+     <button type="button" onclick="alterarQuantidade(${p.id},1)">+</button>
+
+     <button type="button" onclick="remover(${p.id})">Remover</button>
+
+    </div>
+
+   </div>
+
+  `;
+
+ });
+
+ document.getElementById("quantidade").innerText=quantidade;
+
+ document.getElementById("valorTotal").innerText=dinheiro(total);
+
+}
+
+function alterarQuantidade(id,valor) {
+
+ let item=carrinho.find(p=>p.id===id);
+
+ if(!item)return;
+
+ item.quantidade+=valor;
+
+ if(item.quantidade<=0) {
+  carrinho=carrinho.filter(p=>p.id!==id);
+ }
+
+ atualizarCarrinho();
+
+}
+
+function remover(id) {
+
+ carrinho=carrinho.filter(p=>p.id!==id);
+
+ atualizarCarrinho();
+
+}
+
+function abrirCarrinho() {
+
+ document.getElementById("painelCarrinho").classList.add("aberto");
+
+}
+
+function fecharCarrinho() {
+
+ document.getElementById("painelCarrinho").classList.remove("aberto");
+
+}
+
+/* FINALIZAR PEDIDO */
+
+function finalizarPedido() {
+
+ if(carrinho.length===0) {
+  alert("Seu carrinho está vazio.");
+  return;
+ }
+
+ if(!WHATSAPP) {
+  alert("O número comercial do WhatsApp ainda precisa ser configurado no código.");
+  return;
+ }
+
+ let mensagem="Olá! Gostaria de fazer um pedido na LYRIO:%0A%0A";
+
+ carrinho.forEach(item=>{
+
+  const p=produtos.find(x=>x.id===item.id);
+
+  mensagem+=
+   `${p.nome} - ${item.quantidade} unidade(s) - ${dinheiro(p.preco)}%0A`;
+
+ });
+
+ const total=carrinho.reduce((s,item)=>{
+  const p=produtos.find(x=>x.id===item.id);
+  return s+p.preco*item.quantidade;
+ },0);
+
+ mensagem+=`%0ASubtotal: ${dinheiro(total)}`;
+
+ window.open(
+  "https://wa.me/"+WHATSAPP+"?text="+mensagem,
+  "_blank"
+ );
+
+}
+
+</script>
+
+</body>
+</html>
